@@ -1,0 +1,33 @@
+﻿<Window x:Class="TP4.Views.GestionMembres"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TP4.Views"
+        mc:Ignorable="d"
+        Title="GestionMembres" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+
+        <DataGrid Name="dgCours" SelectedItem="{Binding Membre}" ItemsSource="{Binding ListMembres}"  Grid.Row="0"  AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="prénom" Binding="{Binding Prenom}" Width="1*" IsReadOnly="True"  />
+                <DataGridTextColumn Header="Nom" Binding="{Binding Nom}" Width="1*" IsReadOnly="True"  />
+                <DataGridTextColumn Header="Date de Naissance" Binding="{Binding DateNaissance}" Width="1*" IsReadOnly="True"  />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Canvas Grid.Row="1">
+            <Button x:Name="btnModifier" Command="{Binding Modifier}" Content="Modifier" Height="25" Width="80" Canvas.Left="360" Canvas.Top="19"></Button>
+            <Button x:Name="btnSupprimer" Command="{Binding Supprimer}" Content="Supprimer" Height="25" Width="80" Canvas.Left="459" Canvas.Top="19" HorizontalAlignment="Left" VerticalAlignment="Center"></Button>
+            <Button x:Name="btnCréer" Command="{Binding Cree}" Content="Créer" Height="25" Width="80" Canvas.Left="266" Canvas.Top="19" HorizontalAlignment="Left" VerticalAlignment="Center"></Button>
+        </Canvas>
+
+
+
+    </Grid>
+</Window>

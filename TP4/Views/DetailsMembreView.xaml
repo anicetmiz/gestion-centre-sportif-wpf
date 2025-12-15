@@ -1,0 +1,58 @@
+﻿<Window x:Class="TP4.Views.DetailsMembreView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TP4.Views"
+        mc:Ignorable="d"
+        Title="DetailsMembreView" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="DatePicker">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="153*"/>
+            <RowDefinition Height="64*"/>
+        </Grid.RowDefinitions>
+
+
+        <Label Name="lbPreom" Grid.Row="0" Grid.Column="0" Content="Prénom:"  HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,0,0" Height="26" />
+        <!--evite le losFoccus UpdateSourceTrigger = PropertyChanged-->
+        <TextBox Name="tbValeurPrenom" Grid.Row="0" Grid.Column="1" TextWrapping="Wrap" Text="{Binding Prenom,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" Width="257"  Height="29" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0"></TextBox>
+
+
+        <Label Name="lbNom" Content="Nom" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top"  Margin="0,50,0,0" Height="26" />
+        <TextBox Name="tbValeurNom" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top"  Margin="0,50,0,0" TextWrapping="Wrap" Text="{Binding Nom,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" Width="257"  Height="29"></TextBox>
+
+
+        <Label Name="lbDateNaissance" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top"  Margin="0,100,0,0" Content="Date de naissance" Height="26" Width="87" />
+        <DatePicker Name="dpNaissance" DisplayDateStart="2025-01-01"  SelectedDateFormat="Short" SelectedDate="{Binding DateNaissance,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top"  Margin="0,100,0,0"  Width="257"  Height="29"></DatePicker>
+
+
+
+
+        <Button x:Name="btnInscriptoin"  Grid.Row="1" Grid.Column="1" Command="{Binding Inscription}" Content="Inscription" Height="25" Width="80" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,7,0,0"></Button>
+        <Button x:Name="btnSauvegader"  Grid.Row="1" Grid.Column="1" Command="{Binding Sauvegarder}" Content="Sauvegarder" Height="25" Width="80" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,7,0,0"></Button>
+        <Button x:Name="btnAnnuler"  Grid.Row="1" Grid.Column="1" Command="{Binding     Annuler}" Content="Annuler" Height="25" Width="80"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,7,0,0"></Button>
+
+
+    </Grid>
+</Window>
