@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using TP4.Events;
 using TP4.Models;
@@ -14,9 +15,10 @@ using TP4.Views;
 
 namespace TP4.ViewModels
 {
-    public class DetailsMembreVM : IDataErrorInfo
+    public class DetailsMembreVM : IDataErrorInfo, INotifyPropertyChanged
     {
         public Membre _membre;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
 
         public string Prenom
@@ -56,6 +58,18 @@ namespace TP4.ViewModels
                 // est ce que il faut onepropretiechanged ?
             }
         }
+
+        private Visibility _peutSinscrire;
+        public Visibility PeutSinscrire
+        {
+            get => _peutSinscrire;
+            set
+            {
+                _peutSinscrire = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PeutSinscrire)));
+            }
+        }
+
         private Dictionary<string, string> errorList;
         public string Error
         {
@@ -72,6 +86,8 @@ namespace TP4.ViewModels
             _membre = new Membre();
             DateNaissance = null;
 
+            if (_membre.MembreId == 0)
+                PeutSinscrire = Visibility.Hidden;
 
             errorList = new Dictionary<string, string>();
 
@@ -84,7 +100,7 @@ namespace TP4.ViewModels
         {
             _membre = membre;
 
-            
+
 
 
             errorList = new Dictionary<string, string>();
@@ -102,7 +118,7 @@ namespace TP4.ViewModels
                 switch (propertyName)
                 {
                     case nameof(Prenom):
-                        if (string.IsNullOrEmpty(this.Nom))
+                        if (string.IsNullOrEmpty(this.Prenom))
                         {
                             result = "LE PRENOM NE PEUT PAS ETRE VIDE";
                             errorList[propertyName] = result;
@@ -138,7 +154,7 @@ namespace TP4.ViewModels
                             result = " LA DATE NAISSANCE DOIT ETRE DANS LE PASSÉ ";
                             errorList[propertyName] = result;
                         }
-                       
+
                         else
                         {
                             errorList[propertyName] = "";
@@ -171,6 +187,7 @@ namespace TP4.ViewModels
             if (_membre.MembreId == 0)
             {
                 return false;
+
             }
             return true;
         }

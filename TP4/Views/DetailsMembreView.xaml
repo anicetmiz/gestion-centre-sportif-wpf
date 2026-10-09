@@ -49,7 +49,7 @@
 
 
 
-        <Button x:Name="btnInscriptoin"  Grid.Row="1" Grid.Column="1" Command="{Binding Inscription}" Content="Inscription" Height="25" Width="80" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,7,0,0"></Button>
+        <Button x:Name="btnInscriptoin"  Grid.Row="1" Grid.Column="1" Command="{Binding Inscription}"  Visibility="{Binding PeutSinscrire}" Content="Inscription" Height="25" Width="80" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,7,0,0"></Button>
         <Button x:Name="btnSauvegader"  Grid.Row="1" Grid.Column="1" Command="{Binding Sauvegarder}" Content="Sauvegarder" Height="25" Width="80" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,7,0,0"></Button>
         <Button x:Name="btnAnnuler"  Grid.Row="1" Grid.Column="1" Command="{Binding     Annuler}" Content="Annuler" Height="25" Width="80"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,7,0,0"></Button>
 
